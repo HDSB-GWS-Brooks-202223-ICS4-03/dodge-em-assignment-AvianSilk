@@ -10,8 +10,8 @@ public class Car extends Actor {
     private final String colour;
     private final int maxSpeed;  
     private int speed;
-    private int acclnCounter;
-    private int time;
+    private int boostCounter;
+    private boolean boosted = true;
     Car() {
         this("Green", 3);
     }
@@ -22,8 +22,7 @@ public class Car extends Actor {
         maxSpeed = 60;
         if (speed > maxSpeed)
             speed = maxSpeed;
-        acclnCounter = 0;
-        time = 0;
+        boostCounter = 0;
     }
 
     /**
@@ -39,6 +38,7 @@ public class Car extends Actor {
     }
 
     private void controlledMovement() {
+        /*
         if (Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("up")) {
             setRotation(270);
@@ -56,34 +56,39 @@ public class Car extends Actor {
            setRotation(0);
            move(getSpeed());
         } else if (Greenfoot.isKeyDown("space")
-                && acclnCounter <= 3) {
-            accelerate(2);
-            //acclnCounter++;
+                && boostCounter <= 3) {
+            boost(2);
+            if (boosted) {
+                boostCounter++;
+                boosted = !boosted;
+            }
         }
-    }
-    
-    private void resetPos() {
-        if (getX() >= (MyWorld.scenWidth - 10)) {
-            setRotation(0);
-            move(-(MyWorld.scenWidth - 10));
-        } else if (getX() <= (MyWorld.scenWidth - 630)) {
-            setRotation(180);
-            move(-(MyWorld.scenWidth - 10));
-        } else if (getY() >= (MyWorld.scenHeight - 10)) {
-            setRotation(90);
-            move(-(MyWorld.scenHeight - 10));
-        } else if (getY() <= (MyWorld.scenHeight - 470)) {
+        */
+        if (Greenfoot.isKeyDown("w")
+                || Greenfoot.isKeyDown("up")) {
             setRotation(270);
-            move(-(MyWorld.scenHeight - 10));
+            move(getSpeed());
+        } else if (Greenfoot.isKeyDown("s")
+                || Greenfoot.isKeyDown("down")) {
+            setRotation(270);
+            move(-getSpeed());
         }
     }
 
-    public void startTimer() {
-        time++;
-    }
-
-    public int getTime() {
-        return time;
+    private void resetPos() {
+        if (getX() >= (getWorld().getWidth() - 10)) {
+            setRotation(0);
+            move(-(getWorld().getWidth() - 10));
+        } else if (getX() <= 10) {
+            setRotation(180);
+            move(-(getWorld().getWidth() - 10));
+        } else if (getY() >= (getWorld().getHeight() - 10)) {
+            setRotation(90);
+            move(-(getWorld().getHeight() - 10));
+        } else if (getY() <= 10) {
+            setRotation(270);
+            move(-(getWorld().getHeight() - 10));
+        }
     }
     
     public void setSpeed(int speedIn) {
@@ -93,13 +98,9 @@ public class Car extends Actor {
     public int getSpeed() {
         return speed;
     }
-    
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-    
-    public void accelerate(int deltaV) {
-        int newSpeed = speed + deltaV;
+
+    public void boost(int extraV) {
+        int newSpeed = speed + extraV;
         if (newSpeed > maxSpeed)
             newSpeed = maxSpeed;
         move(newSpeed);
