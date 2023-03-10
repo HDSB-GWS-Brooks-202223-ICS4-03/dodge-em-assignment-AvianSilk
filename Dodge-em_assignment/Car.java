@@ -39,23 +39,7 @@ public class Car extends Actor {
 
     private void controlledMovement() {
         /*
-        if (Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("up")) {
-            setRotation(270);
-            move(getSpeed());
-        } else if (Greenfoot.isKeyDown("a")
-                || Greenfoot.isKeyDown("left")) {
-            setRotation(180);
-            move(getSpeed());
-        } else if (Greenfoot.isKeyDown("s")
-                || Greenfoot.isKeyDown("down")) {
-            setRotation(90);
-            move(getSpeed());
-        } else if (Greenfoot.isKeyDown("d")
-                || Greenfoot.isKeyDown("right")) {
-           setRotation(0);
-           move(getSpeed());
-        } else if (Greenfoot.isKeyDown("space")
+        if (Greenfoot.isKeyDown("space")
                 && boostCounter <= 3) {
             boost(2);
             if (boosted) {

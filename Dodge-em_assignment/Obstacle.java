@@ -7,17 +7,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Obstacle extends Actor {
-    private int xPos;
-    private int yPos;
+    private int initXPos;
+    private int initYPos;
     private int speed;
-    Obstacle(int xPosIn, int yPosIn) {
-        xPos = xPosIn;
-        yPos = yPosIn + 20;
+    Obstacle(int initXPosIn, int initYPosIn) {
+        initXPos = initXPosIn;
+        initYPos = initYPosIn + 20;
         speed = -(Greenfoot.getRandomNumber(4) + 1);
     }
-    
+
     /**
-     * Act - do whatever the Obstacle wants to do. This method is called whenever
+     * Act - do whatever the Obstacle wants to do.
+     * This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
@@ -25,21 +26,20 @@ public class Obstacle extends Actor {
         resetPos();
     }
     
-    public int getXPos() {
-        return xPos;
+    public int getInitXPos() {
+        return initXPos;
     }
     
-    public int getYPos() {
-        return yPos;
+    public int getInitYPos() {
+        return initYPos;
     }
     
     public void resetPos() {
         if (getX() <= 10) {
-            move(getWorld().getWidth() - 10);
             speed = -(Greenfoot.getRandomNumber(4) + 1);
-            setRotation(270);
-            move(Math.abs(Greenfoot.getRandomNumber(440) - getY()));
-            setRotation(0);
+            setLocation(
+            getWorld().getWidth() - 10,
+            Greenfoot.getRandomNumber(440) + 10);
         }
     }
 
