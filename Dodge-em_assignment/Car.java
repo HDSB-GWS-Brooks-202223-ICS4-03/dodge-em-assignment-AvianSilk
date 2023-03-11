@@ -82,11 +82,4 @@ public class Car extends Actor {
     public int getSpeed() {
         return speed;
     }
-
-    public void boost(int extraV) {
-        int newSpeed = speed + extraV;
-        if (newSpeed > maxSpeed)
-            newSpeed = maxSpeed;
-        move(newSpeed);
-    }
 }

@@ -7,10 +7,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class MyWorld extends World {
-    public String gameState = "start";
-    public Button button1;
-    public Car car;
-    public Obstacle elephant1, elephant2, elephant3;
+    private String gameState;
+    private Button buttonPlay, buttonPlayAgain, buttonEnd;
+    private Car car;
+    private Obstacle elephant1, elephant2, elephant3;
+    private MouseInfo mouse;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -19,48 +20,43 @@ public class MyWorld extends World {
         /* Creating a new world with 600x400 cells,
          * with a cell size of 1x1 pixels.*/
         super(690, 470, 1);
+
+        gameState = "start";
+        buttonPlay = new Button(" Play ", 50, false);
+        buttonPlayAgain = new Button(" Play Again ", 50, false);
+        buttonEnd = new Button(" End ", 50, false);
+        car = new Car();
+        elephant1 = new Obstacle(
+                            625,
+                            Greenfoot.getRandomNumber(440));
+        elephant2 = new Obstacle(
+                            625,
+                            Greenfoot.getRandomNumber(440));
+        elephant3 = new Obstacle(
+                            625,
+                            Greenfoot.getRandomNumber(440));
     }
 
     public void act() {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
+        mouse = Greenfoot.getMouseInfo();
 
         switch(gameState) {
             case "start":
                 setBackground("woodenBG.jpg");
-                button1 = new Button(" Test ", 50, true);
-                addObject(button1, getWidth() / 2, getHeight() / 2);
-
-                if (mouse != null) {
-                    Actor interactingActor = mouse.getActor();
-                    if (interactingActor != null) {
-                        Button currentButton = (Button) interactingActor;
-                        int mouseButtonPressed = mouse.getButton();
-                        int mouseClickCount = mouse.getClickCount();
-                        System.out.println(mouseButtonPressed + " - " + mouseClickCount);
-                        if (mouseClickCount == 1) {
-                            currentButton.buttonToggle();
-                        }
-                    }
-                }
+                addObject(buttonPlay, getWidth() / 2, 300);
+                addObject(buttonEnd, getWidth() / 2, 380);
+                buttonInteract(mouse, buttonPlay, "gameInit");
+                buttonInteract(mouse, buttonEnd, "end");
                 break;
 
             case "gameInit":
                 setBackground("roadBGCropped.png");
+                removeObjects(getObjects(Button.class));
 
                 // Creating & placing a car and obstacles
-                car = new Car();
                 addObject(car, 90, getHeight() / 2);
                 car.setRotation(270);
 
-                elephant1 = new Obstacle(
-                                625,
-                                Greenfoot.getRandomNumber(440));
-                elephant2 = new Obstacle(
-                                625,
-                                Greenfoot.getRandomNumber(440));
-                elephant3 = new Obstacle(
-                                625,
-                                Greenfoot.getRandomNumber(440));
                 addObject(
                         elephant1,
                         elephant1.getInitXPos(),
@@ -89,23 +85,22 @@ public class MyWorld extends World {
 
             case "end":
                 setBackground("you_loseBG.jpg");
+                removeObjects(getObjects(Button.class));
                 removeObjects(getObjects(Car.class));
                 removeObjects(getObjects(Obstacle.class));
+                addObject(buttonPlayAgain, getWidth() / 2, 380);
+                buttonInteract(mouse, buttonPlayAgain, "gameInit");
                 break;
         }
     }
 
-    private void buttonWork(MouseInfo mouseIn) {
+    private void buttonInteract(MouseInfo mouseIn, Button buttonIn, String gameStateIn) {
         if (mouseIn != null) {
             Actor interactingActor = mouseIn.getActor();
-            if (interactingActor != null) {
-                Button currentButton = (Button) interactingActor;
-                //int mouseButtonPressed = mouseIn.getButton();
-                int mouseClickCount = mouseIn.getClickCount();
-                //System.out.println(mouseButtonPressed + " - " + mouseClickCount);
-                if (mouseClickCount == 1) {
-                    currentButton.buttonToggle();
-                }
+            if (interactingActor == buttonIn) {
+                buttonIn = (Button) interactingActor;
+                if (mouseIn.getClickCount() == 1)
+                    gameState = gameStateIn;
             }
         }
     }

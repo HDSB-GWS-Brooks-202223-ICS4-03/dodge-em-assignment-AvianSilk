@@ -56,11 +56,10 @@ public class Button extends Actor
     }
 
     public void buttonToggle() {
-        if (state) {
+        if (state)
             buttonOff();
-        } else {
+        else
             buttonOn();
-        }
         //state = !state;
     }
 }
