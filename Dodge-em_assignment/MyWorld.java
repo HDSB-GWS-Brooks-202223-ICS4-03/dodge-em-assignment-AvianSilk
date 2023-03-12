@@ -8,10 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World {
     private String gameState;
-    private Button buttonPlay, buttonPlayAgain, buttonEnd;
+    private Button title, buttonPlay, buttonPlayAgain, buttonHelp;
     private Car car;
-    private Obstacle elephant1, elephant2, elephant3;
+    private RedCar redCar1, redCar2, redCar3, redCar4;
+    //private GreenfootImage title;
     private MouseInfo mouse;
+    /*private Background background;
+
+    private int offset = 0;
+    private GreenfootImage bgImage;
+
+    public void redrawBackground() {
+    drawImage(bgImage, offset, 0);
+    }*/
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -22,19 +31,28 @@ public class MyWorld extends World {
         super(690, 470, 1);
 
         gameState = "start";
-        buttonPlay = new Button(" Play ", 50, false);
-        buttonPlayAgain = new Button(" Play Again ", 50, false);
-        buttonEnd = new Button(" End ", 50, false);
+        //background = new Background();
+        title = new Button(
+            " Dodge 'em all! ",
+            75,
+            Color.BLACK,
+            Color.RED);
+        buttonPlay = new Button(
+            " Play ",
+            50,
+            Color.BLACK,
+            Color.GREEN);
+        buttonHelp = new Button(
+            " Help ",
+            50,
+            Color.BLACK,
+            Color.CYAN);
+        buttonPlayAgain = new Button(
+            " Play Again ",
+            50,
+            Color.BLACK,
+            Color.MAGENTA);
         car = new Car();
-        elephant1 = new Obstacle(
-                            625,
-                            Greenfoot.getRandomNumber(440));
-        elephant2 = new Obstacle(
-                            625,
-                            Greenfoot.getRandomNumber(440));
-        elephant3 = new Obstacle(
-                            625,
-                            Greenfoot.getRandomNumber(440));
     }
 
     public void act() {
@@ -42,64 +60,134 @@ public class MyWorld extends World {
 
         switch(gameState) {
             case "start":
-                setBackground("woodenBG.jpg");
-                addObject(buttonPlay, getWidth() / 2, 300);
-                addObject(buttonEnd, getWidth() / 2, 380);
-                buttonInteract(mouse, buttonPlay, "gameInit");
-                buttonInteract(mouse, buttonEnd, "end");
+                setBackground("carRoadBG.jpg");
+                //GreenfootImage.drawRect(getWidth() / 2, 150, 20, 30);
+                addObject(title, getWidth() / 2, 80);
+                addObject(buttonPlay, 500, 300);
+                //addObject(buttonHelp, 500, 350);
+                buttonInteract(buttonPlay, "l1Init");
+                //buttonInteract(buttonHelp, "end");
                 break;
 
-            case "gameInit":
+            case "l1Init":
                 setBackground("roadBGCropped.png");
                 removeObjects(getObjects(Button.class));
 
-                // Creating & placing a car and obstacles
-                addObject(car, 90, getHeight() / 2);
+                // Creating & placing a car and RedCars
+                addObject(car, 75, getHeight() / 2);
                 car.setRotation(270);
-
+                
+                redCar1 = new RedCar(
+                                625,
+                                Greenfoot.getRandomNumber(440));
+                redCar2 = new RedCar(
+                                625,
+                                Greenfoot.getRandomNumber(440));
                 addObject(
-                        elephant1,
-                        elephant1.getInitXPos(),
-                        elephant1.getInitYPos());
+                    redCar1,
+                    redCar1.getInitXPos(),
+                    redCar1.getInitYPos());
                 addObject(
-                        elephant2,
-                        elephant2.getInitXPos(),
-                        elephant2.getInitYPos());
-                addObject(
-                        elephant3,
-                        elephant3.getInitXPos(),
-                        elephant3.getInitYPos());
+                    redCar2,
+                    redCar2.getInitXPos(),
+                    redCar2.getInitYPos());
+                redCar1.zeroResetPosCounters();
+                redCar2.zeroResetPosCounters();
 
-                gameState = "game";
-
-            case "game":
+                gameState = "l1";
+            
+            case "l1":
                 car.act();
-                elephant1.act();
-                elephant2.act();
-                elephant3.act();
-                if (elephant1.hasCollided(Car.class)
-                        || (elephant2.hasCollided(Car.class)
-                        || (elephant3.hasCollided(Car.class))))
-                        gameState = "end";
+                redCar1.act();
+                redCar2.act();
+                if (redCar1.hasCollided(Car.class)
+                    || (redCar2.hasCollided(Car.class)))
+                    gameState = "end";
+                if (redCar1.getResetPosCounterCounter() >= 3) {
+                    gameState = "l2Init";
+                }
+                break;
+
+            case "l2Init":
+                setBackground("roadBGCropped.png");
+                removeObjects(getObjects(Button.class));
+
+                // Creating & placing a car and RedCars
+                addObject(car, 75, getHeight() / 2);
+                car.setRotation(270);
+                redCar3 = new RedCar(
+                                625,
+                                Greenfoot.getRandomNumber(440));
+                addObject(
+                    redCar3,
+                    redCar3.getInitXPos(),
+                    redCar3.getInitYPos());
+                redCar3.zeroResetPosCounters();
+
+                gameState = "l2";
+            
+            case "l2":
+                car.act();
+                redCar1.act();
+                redCar2.act();
+                redCar3.act();
+                if (redCar1.hasCollided(Car.class)
+                    || (redCar2.hasCollided(Car.class)
+                    || (redCar3.hasCollided(Car.class))))
+                    gameState = "end";
+                if (redCar1.getResetPosCounterCounter() >= 6) {
+                    gameState = "l3Init";
+                }
+                break;
+            
+            case "l3Init":
+                setBackground("roadBGCropped.png");
+                removeObjects(getObjects(Button.class));
+
+                // Creating & placing a car and RedCars
+                addObject(car, 75, getHeight() / 2);
+                car.setRotation(270);
+                redCar4 = new RedCar(
+                                625,
+                                Greenfoot.getRandomNumber(440));
+                addObject(
+                    redCar4,
+                    redCar4.getInitXPos(),
+                    redCar4.getInitYPos());
+                redCar4.zeroResetPosCounters();
+
+                gameState = "l3";
+
+            case "l3":
+                car.act();
+                redCar1.act();
+                redCar2.act();
+                redCar3.act();
+                redCar4.act();
+                if (redCar1.hasCollided(Car.class)
+                    || (redCar2.hasCollided(Car.class)
+                    || (redCar3.hasCollided(Car.class)
+                    || (redCar4.hasCollided(Car.class)))))
+                    gameState = "end";
                 break;
 
             case "end":
                 setBackground("you_loseBG.jpg");
                 removeObjects(getObjects(Button.class));
                 removeObjects(getObjects(Car.class));
-                removeObjects(getObjects(Obstacle.class));
-                addObject(buttonPlayAgain, getWidth() / 2, 380);
-                buttonInteract(mouse, buttonPlayAgain, "gameInit");
+                removeObjects(getObjects(RedCar.class));
+                addObject(buttonPlayAgain, 330, 380);
+                buttonInteract(buttonPlayAgain, "l1Init");
                 break;
         }
     }
 
-    private void buttonInteract(MouseInfo mouseIn, Button buttonIn, String gameStateIn) {
-        if (mouseIn != null) {
-            Actor interactingActor = mouseIn.getActor();
+    private void buttonInteract(Button buttonIn, String gameStateIn) {
+        if (mouse != null) {
+            Actor interactingActor = mouse.getActor();
             if (interactingActor == buttonIn) {
                 buttonIn = (Button) interactingActor;
-                if (mouseIn.getClickCount() == 1)
+                if (mouse.getClickCount() == 1)
                     gameState = gameStateIn;
             }
         }

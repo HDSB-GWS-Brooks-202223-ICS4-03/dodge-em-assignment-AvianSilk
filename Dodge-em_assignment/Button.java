@@ -8,22 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends Actor
 {
-    boolean state;
+    boolean state = true;
     String text;
     int textSize;
+    Color textColor, bgColor;
 
     Button() {
-        this("Button", 40, false);
+        this("Button", 40, Color.GREEN, Color.BLACK);
     }
 
-    Button(String textIn, int textSizeIn,  boolean stateIn) {
+    Button(String textIn, int textSizeIn, Color textColorIn, Color bgColorIn) {
         text = textIn;
         textSize = textSizeIn;
-        //state = stateIn;
-        if (stateIn)
+        textColor = textColorIn;
+        bgColor = bgColorIn;
+        createButton();
+        /*if (state)
             buttonOn();
         else
-            buttonOff();
+            buttonOff();*/
     }
     
     /**
@@ -34,8 +37,17 @@ public class Button extends Actor
     {
         // Add your action code here.
     }
+
+    public void createButton() {
+        GreenfootImage buttonImage = new GreenfootImage(
+                                            text,
+                                            textSize,
+                                            textColor,
+                                            bgColor);
+        setImage(buttonImage);
+    }
     
-    public void buttonOff() {
+    /*public void buttonOff() {
         GreenfootImage buttonImage = new GreenfootImage(
                                             text,
                                             textSize,
@@ -61,5 +73,5 @@ public class Button extends Actor
         else
             buttonOn();
         //state = !state;
-    }
+    }*/
 }
