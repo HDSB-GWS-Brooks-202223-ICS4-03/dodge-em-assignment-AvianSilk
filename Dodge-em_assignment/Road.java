@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * There are various game states and various instances of the same
  * kind of objects.
  * 
- * @author Venkata (@AvianSilk) 
+ * @author Venkata Adapala (@AvianSilk) 
  * @version 12-03-2023
  */
 public class Road extends World {
@@ -25,7 +25,7 @@ public class Road extends World {
     private MouseInfo mouse; // For button interaction
     private int score; // The score (essentially a timer)
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class Road.
      * 
      */
     public Road() {    
@@ -60,6 +60,9 @@ public class Road extends World {
         car = new PlayerCar(); // Creating the player-controlled car
     }
 
+    /**
+     * This is the main game loop where
+     */
     public void act() {
         mouse = Greenfoot.getMouseInfo();
 
@@ -259,12 +262,12 @@ public class Road extends World {
 
     /**
      * This method takes a button, checks if the mouse is clicking it,
-     * and if it is, then switches the gameState to whatever was given
+     * and if it is, switches the gameState to whatever was given
      * 
      * @param buttonIn The button
      * @param gameStateIn The resultant gameState 
      */
-    private void buttonInteract(Button buttonIn, String gameStateIn) {
+    public void buttonInteract(Button buttonIn, String gameStateIn) {
         if (mouse != null) {
             Actor interactingActor = mouse.getActor();
             if (interactingActor == buttonIn) {

@@ -12,7 +12,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * kind of challenge to the player since it slowly but surely
  * arrives near the car.
  * 
- * @author Venkata (@AvianSilk) 
+ * @author Venkata Adapala (@AvianSilk) 
  * @version 12-03-2023
  */
 public class Barrier extends Actor {

@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * fixed speed and only moves vertically. If it goes beyond the screen,
  * it snaps back to the opposing edge of the screen.
  * 
- * @author Venkata (@AvianSilk)
+ * @author Venkata Adapala (@AvianSilk)
  * @version 12-03-2023
  */
 public class PlayerCar extends Actor { 

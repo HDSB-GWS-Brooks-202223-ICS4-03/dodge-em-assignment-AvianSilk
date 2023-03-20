@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * an object of this class results in the game ending. This is
  * a different kind of Obstacle class (when compared to Barrier).
  * 
- * @author Venkata (@AvianSilk) 
+ * @author Venkata Adapala (@AvianSilk) 
  * @version 12-03-2023
  */
 public class ObstacleCar extends Actor {
@@ -114,7 +114,7 @@ public class ObstacleCar extends Actor {
      * an object of a certain class has collided with the
      * obstacle car
      * 
-     * @return isTouching(cls) True if it collided, false if not
+     * @return true if it collided, false if not
      */
     public boolean hasCollided(java.lang.Class<?> cls) {
         return isTouching(cls);
