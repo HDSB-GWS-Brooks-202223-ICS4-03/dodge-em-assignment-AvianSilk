@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A description of class PlayerCar:
- * 
  * This is the user-controlled car. It is green in color and has a
  * fixed speed and only moves vertically. If it goes beyond the screen,
  * it snaps back to the opposing edge of the screen.
@@ -29,8 +27,7 @@ public class PlayerCar extends Actor {
      * value (maxSpeed) to ensure that the game
      * is user-friendly
      * 
-     * @param The speed the car object
-     *         is supposed to move at
+     * @param speedIn The speed the car object is supposed to move at
      */
     public PlayerCar(int speedIn) {
         speed = speedIn;

@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A description of class Button:
- * 
  * This class creates images that look like buttons on the screen.
  * Using mouse info, objects of this class can switch game states.
  * This class has also been used to make Title images which don't

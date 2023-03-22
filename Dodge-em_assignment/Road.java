@@ -1,11 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A description of class Road:
- * 
- * This is the World class i.e. where all of my actors are placed.
+ * This is the World sub-class i.e. where all of my actors are placed.
  * There are various game states and various instances of the same
- * kind of objects.
+ * kinds of objects.
  * 
  * @author Venkata Adapala (@AvianSilk) 
  * @version 12-03-2023
@@ -61,7 +59,7 @@ public class Road extends World {
     }
 
     /**
-     * This is the main game loop where
+     * This is the main game loop where game states are constantly switched
      */
     public void act() {
         mouse = Greenfoot.getMouseInfo();

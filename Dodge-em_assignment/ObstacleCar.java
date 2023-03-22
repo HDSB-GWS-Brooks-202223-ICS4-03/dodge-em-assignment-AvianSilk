@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A description of class ObstacleCar:
- * 
  * This class is used to design a car acting as an obstacle
  * to the user's car since it moves towards him. Colliding with
  * an object of this class results in the game ending. This is
@@ -114,6 +112,7 @@ public class ObstacleCar extends Actor {
      * an object of a certain class has collided with the
      * obstacle car
      * 
+     * @param cls The class which contains the objects that are checked for collisions
      * @return true if it collided, false if not
      */
     public boolean hasCollided(java.lang.Class<?> cls) {

@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A description of class Barrier:
- * 
  * This class is used to design a barrier (looks like an anchor)
  * acting as an obstacle to the user's car since it
  * slowly moves towards him. Colliding with an object of this
@@ -83,6 +81,7 @@ public class Barrier extends Actor {
      * an object of a certain class has collided with the
      * obstacle car
      * 
+     * @param cls The class which contains the objects that are checked for collisions
      * @return isTouching(cls) True if it collided, false if not
      */
     public boolean hasCollided(java.lang.Class<?> cls) {
