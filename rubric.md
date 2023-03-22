@@ -1,15 +1,23 @@
 # ICS4U Greenfoot Program - Rubric
 
 ## Name: 
-[TOC]
+Dodge 'em all!
 
 ## Mini Reflection
 
 Mini-Game Genre:
 
-I think my program is a level XXXX because ....(insert justification here)
+I think my program is a level 4 because it meets all of the level 3 requirements and some additional level 4 requirements.
 
 The extra features I included in my program are: 
+- Obstacles move at random speeds from random places
+- New obstacles with different colors pop up after a while
+- Although the speeds are randomized, they'll still slowly keep increasing to ensure that the game doesn't feel stagnated at any point
+- Score is displayed throughout the game instead of in the end-screen only
+- Help screen with instructions on how to play and a button leading directly to the game
+- Clear comments and Javadoc documentation
+
+While I tried a couple of other features like adding sound and a high score, I couldn't ultimately do it so the game isn't perfect in my opinion but close.
 
 
 ## The Program [KA]
@@ -30,8 +38,8 @@ The extra features I included in my program are:
 - [ ] End Screen - A screen that displays the results of a user’s attempt
 - [ ] Replayability - Adding elements of randomness to the game to ensure that it is different to play each time you try.
 
-- [ ] - [ ] Extra features above and beyond a minimial implementation of the genre selected
-- [ ] Code follows OO principals and architecture
+- [ ] Extra features above and beyond a minimial implementation of the genre selected
+- [ ] Code follows OO principles and architecture
 - [ ] User-friendly *input-output forms* are implemented
 - [ ] User interface is a pleasure to use
 
